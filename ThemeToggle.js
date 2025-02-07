@@ -1,31 +1,20 @@
-import { useState, useEffect } from 'react';
-import styles from '../styles/ThemeToggle.module.css';
+import { useState } from 'react';
+import styles from '../styles/ToggleMessage.module.css';
 
-const ThemeToggle = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+const ToggleMessage = () => {
+  const [isVisible, setIsVisible] = useState(false);
 
-  useEffect(() => {
-  console.log('Dark mode is:', isDarkMode ? 'Enabled' : 'Disabled'); // Add this line for debugging
-  if (isDarkMode) {
-    document.body.classList.add('dark-mode');
-  } else {
-    document.body.classList.remove('dark-mode');
-  }
-}, [isDarkMode]);
-
-  const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-  };
+  const toggleVisibility = () => setIsVisible(!isVisible);
 
   return (
-    <div className={styles.themeContainer}>
-      <h1 className={styles.themeTitle}>Theme Toggle</h1>
-      <button onClick={toggleTheme} className={styles.themeButton}>
-        {isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+    <div className={styles.toggleContainer}>
+      <h2 className={styles.toggleTitle}>Toggle Message</h2>
+      <button onClick={toggleVisibility} className={styles.toggleButton}>
+        {isVisible ? 'Hide Message' : 'Show Message'}
       </button>
+      {isVisible && <p className={styles.toggleMessage}>Now i am visible!</p>}
     </div>
   );
 };
 
-
-export default ThemeToggle;
+export default ToggleMessage;
